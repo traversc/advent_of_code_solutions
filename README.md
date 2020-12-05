@@ -3,5 +3,3 @@
 Solutions to: https://adventofcode.com/2020
 
 Solving Advent of Code problems using standard R programming. 
-
-Not intended to be the most computationally efficient. 
