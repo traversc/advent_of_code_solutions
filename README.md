@@ -2,4 +2,6 @@
 
 Solutions to: https://adventofcode.com/2020
 
-Not intended to be the most computationally efficient, but solve the problems using standard R idioms. 
+Solving Advent of Code problems using standard R programming. 
+
+Not intended to be the most computationally efficient. 
