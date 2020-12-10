@@ -8,38 +8,6 @@ input <- readLines("Data/Day10.txt") %>% as.numeric %>% sort
 (sum(diff(input) == 1)+1) * (sum(diff(input) == 3)+1)
 # 2760
 
-input <- readLines(textConnection("28
-33
-18
-42
-31
-14
-46
-20
-48
-47
-24
-23
-49
-45
-19
-38
-39
-11
-1
-32
-25
-35
-8
-17
-7
-9
-4
-2
-34
-10
-3")) %>% as.numeric %>% sort
-
 # Part 2
 connect <- function(input, pos) {
   total <- 0
@@ -58,4 +26,5 @@ for(i in 2:length(split)) {
   new_input <- input[split[i-1]:split[i]]
   results[[i-1]] <- connect(new_input, 1)
 }
-do.call(prod, results)
+print(do.call(prod, results), digits = 22)
+# 13816758796288
