@@ -3,7 +3,6 @@ library(data.table)
 
 setwd("~/GoogleDrive/advent_of_code_solutions/")
 
-library(tidyverse)
 # Part 1
 input <- readLines("Data/Day18.txt")
 `%a%` <- function(x,y) x+y
