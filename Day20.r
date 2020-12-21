@@ -1,6 +1,5 @@
 library(tidyverse)
 library(data.table)
-library(parallel)
 
 setwd("~/GoogleDrive/advent_of_code_solutions/")
 
@@ -137,3 +136,29 @@ for(i in seq(1, 1 + nrow(picx) - nrow(sea_monster))) {
 sm_area <- sea_monster %>% as.vector %>% na.omit %>% length
 sum(picx == "#") - sm_area * total_monsters
 # 2023
+
+# visualization
+library(ggplot2)
+picx <- picture %>% flip %>% rotate # correct rotation/flip trial and error
+total_monsters <- 0
+for(i in seq(1, 1 + nrow(picx) - nrow(sea_monster))) {
+  for(j in seq(1, 1 + ncol(picx) - ncol(sea_monster))) {
+    test <- sea_monster == picx[seq(i,nrow(sea_monster)+i-1),seq(j,ncol(sea_monster)+j-1)]
+    detect <- na.omit(as.vector(test)) %>% all
+    if(detect) {
+      test[is.na(test)] <- F
+      picx[seq(i,nrow(sea_monster)+i-1),seq(j,ncol(sea_monster)+j-1)][test] <- "*"
+    }
+  }
+}
+
+df <- picx %>% as.data.frame %>%
+  mutate(row = nrow(picx):1) %>%
+  gather(-row, key = "col", value = "element") %>%
+  mutate(col = gsub("V", "", col) %>% as.numeric)
+
+ggplot(df, aes(x = col, y = row, fill = element)) + 
+  geom_tile(show.legend=F) + 
+  coord_fixed(1) +
+  scale_fill_manual(values = c("darkblue", "gold", "blue")) + 
+  theme_bw()
